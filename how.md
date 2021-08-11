@@ -11,3 +11,9 @@ npm install
 ## nodemon
 
 npm i nodemon
+
+<!-- Levantando el server y lanzando una easy web -->
+
+## configurando backend dependencies
+
+npm i express socket.io
