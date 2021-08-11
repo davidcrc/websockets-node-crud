@@ -3,7 +3,15 @@ import { Server as WebSocketServer } from "socket.io";
 import http from "http";
 import { v4 as uuid } from "uuid";
 
-const notes = []
+const notes = [{
+  title: 'inicial',
+  description: '',
+  id: '1c240b67-4da1-4ab8-a7bf-2b120587e235'
+}, {
+  title: 'ini note',
+  description: '',
+  id: 'ed2fb392-3fe0-4ced-846d-09f0e78dd093'
+}]
 
 const app = express();
 const server = http.createServer(app);
@@ -13,6 +21,7 @@ app.use(express.static(__dirname + '/public'))
 
 io.on('connection', (socket) => {
   console.log('new connection to io', socket.id)
+  socket.emit('server:loadnotes', notes);
 
   socket.on('client:newnote', newNote => {
     // console.log('recibo', newNote)

@@ -11,3 +11,7 @@ socket.on('server:newnote', note => {
   console.log("la nota guardada", note)
   appendNote(note)
 } )
+
+socket.on('server:loadnotes', notes => {
+  renderNotes(notes)
+})
