@@ -17,3 +17,7 @@ npm i nodemon
 ## configurando backend dependencies
 
 npm i express socket.io
+
+## Usaremos una BD  que sera una variables
+
+npm i uuid
