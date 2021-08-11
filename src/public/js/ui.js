@@ -1,10 +1,10 @@
-const notesList = document.querySelector('#notes')
+var notesList = document.querySelector('#notes')
+let savedId = null
 
-const noteUI = note => {
-  const div = document.createElement('div');
-
-  div.innerHTML += `
-  <div class="card card-body rounded-0 mb-2" >
+const addDiv = (div, note) => {
+  
+  div.innerHTML =  `
+  <div class="card card-body rounded-0 mb-2 animate__animated animate__fadeInUp" >
     <div class="d-flex justify-content-between" >
       <h1 class="h3 card-title"> ${note.title} </h1>
       <div>
@@ -15,17 +15,31 @@ const noteUI = note => {
     <p> ${note.description} </p>
   </div>
   `
-
   const btnDelete = div.querySelector(".delete")
+  const btnUpdate = div.querySelector(".update")
   // console.log(btnDelete)
   btnDelete.addEventListener('click', () => {
-    console.log(btnDelete.dataset.id)
+    deleteNote(btnDelete.dataset.id)
   })
+
+  btnUpdate.addEventListener('click', () => {
+    // console.log("actualizar este id", btnUpdate.dataset.id)
+    getNote(btnUpdate.dataset.id)
+    savedId = btnUpdate.dataset.id
+  })
+
   return div;
+}
+const noteUI = note => {
+  const div = document.createElement('div');
+  div.id = note.id
+
+  return addDiv(div, note);
 }
 
 const renderNotes = (notes) => {
   // console.log("mostrar las notas", notes)
+  notesList.innerHTML = ''
   notes.forEach(note => {
     appendNote(note)
   });
@@ -33,4 +47,14 @@ const renderNotes = (notes) => {
 
 const appendNote = note => {
   notesList.append(noteUI(note))
+}
+
+const deleteOneNote = noteId => {
+  console.log("eliminame este id d", noteId)
+  document.getElementById(noteId).remove();
+}
+
+const updateOneNote = note => {
+  let divnote = document.getElementById(note.id);
+  addDiv(divnote, note)
 }
