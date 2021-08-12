@@ -21,3 +21,7 @@ npm i express socket.io
 ## Usaremos una BD  que sera una variables
 
 npm i uuid
+
+## para copiar archivos el dist
+
+npm i ncp
